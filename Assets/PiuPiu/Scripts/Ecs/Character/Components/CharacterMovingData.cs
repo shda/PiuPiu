@@ -8,4 +8,9 @@ namespace PiuPiu.Scripts.Ecs.Character.Components
         public float Speed;
         public float3 Direction;
     }
+
+    public struct BulletData : IComponentData
+    {
+        
+    }
 }

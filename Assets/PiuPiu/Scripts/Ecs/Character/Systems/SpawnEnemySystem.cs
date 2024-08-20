@@ -26,7 +26,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             isAlreadySpawning = true;
             
             var prefab = SystemAPI.GetSingleton<Spawner>().Prefab;
-            var instances = state.EntityManager.Instantiate(prefab, 10, Allocator.Temp);
+            var instances = state.EntityManager.Instantiate(prefab, 0, Allocator.Temp);
             
             var random = Random.CreateFromIndex(111);
             

@@ -1,6 +1,7 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Physics;
 using UnityEngine;
 
 namespace PiuPiu.Scripts.Ecs.Character.Systems
