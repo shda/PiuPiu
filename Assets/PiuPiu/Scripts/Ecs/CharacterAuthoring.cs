@@ -20,9 +20,9 @@ namespace PiuPiu.Scripts.Ecs
                     Direction = new float3(0,0,0),
                     Speed = authoring.speedMoving,
                 });
+                
                 if (authoring.isPlayerControl)
                 {
-                   // World.DefaultGameObjectInjectionWorld.EntityManager.SetName(entity , "Player");
                     AddComponent(entity, new PlayerData());
                     AddComponent(entity , new InputData());
                 }

@@ -22,7 +22,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             inputState.Vertical = Input.GetAxisRaw("Vertical");
             inputState.MouseX = Input.GetAxisRaw("Mouse X");
             inputState.MouseY = Input.GetAxisRaw("Mouse Y");
-            inputState.Space = Input.GetKeyDown(KeyCode.Space);
+            inputState.Space = Input.GetKey(KeyCode.Space);
         }
     }
 }

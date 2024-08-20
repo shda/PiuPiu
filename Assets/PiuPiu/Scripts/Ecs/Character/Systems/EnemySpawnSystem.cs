@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace PiuPiu.Scripts.Ecs.Character.Systems
 {
-    public partial struct SpawnEnemySystem : ISystem
+    public partial struct EnemySpawnSystem : ISystem
     {
         bool isAlreadySpawning;
         
