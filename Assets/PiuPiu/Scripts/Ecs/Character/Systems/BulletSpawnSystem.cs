@@ -1,6 +1,8 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 
 namespace PiuPiu.Scripts.Ecs.Character.Systems
@@ -8,6 +10,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
     public partial struct BulletSpawnSystem : ISystem
     {
         private float currentTime;
+
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
@@ -18,50 +21,28 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            /*
-            foreach (var (bulletSpawner , localTransform) in 
-                     SystemAPI.Query<RefRW<BulletSpawner>, RefRO<LocalToWorld>>())
+            foreach (var (bulletSpawner, localTransform, entity) in
+                     SystemAPI.Query<RefRW<BulletSpawner>, RefRO<LocalToWorld>>().WithEntityAccess())
             {
                 bulletSpawner.ValueRW.currentTime -= SystemAPI.Time.DeltaTime;
 
                 if (bulletSpawner.ValueRW.currentTime <= 0)
                 {
                     bulletSpawner.ValueRW.currentTime = bulletSpawner.ValueRO.delayToFire;
-                    
+
                     var newEntity = state.EntityManager.Instantiate(bulletSpawner.ValueRO.BulletPrefab);
+
+                    var newLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(newEntity);
+                    newLocalTransform.ValueRW.Position = localTransform.ValueRO.Position;
+                    newLocalTransform.ValueRW.Rotation = localTransform.ValueRO.Rotation;
                     
+                    var forward = newLocalTransform.ValueRO.Forward();
+
+                    var physicsVelocity = SystemAPI.GetComponentRW<PhysicsVelocity>(newEntity);
+                    
+                    physicsVelocity.ValueRW.Linear = new float3(forward.x , forward.y ,forward.z) * bulletSpawner.ValueRW.bulletSpeed;
                 }
             }
-    */
-            
-            /*
-            float deltaTime = SystemAPI.Time.DeltaTime;
-            currentTime -= deltaTime;
-            
-            if(currentTime > 0)
-                return;
-            
-            var input = SystemAPI.GetSingleton<InputData>();
-            if(!input.Space)
-                return;
-            
-            
-            currentTime = bulletSpawner.delayToFire;
-            */
-            
-            /*
-            var bulletSpawner = SystemAPI.GetSingleton<BulletSpawner>();
-            
-            
-            var newEntity = state.EntityManager.Instantiate(bulletSpawner.BulletPrefab);
-                
-            var transform = SystemAPI.GetComponentRW<LocalTransform>(newEntity);
-            transform.ValueRW.Position = localToWorld.ValueRO.Position;
-            */
-            //var transform = SystemAPI.GetComponentRW<LocalTransform>(entity);
-            // var randomFloat3 = (random.NextFloat3() - new float3(0.5f, 0, 0.5f)) * 20;
-            // transform.ValueRW.Position = new float3(randomFloat3.x , 0 , randomFloat3.z);
-            
         }
     }
 }
