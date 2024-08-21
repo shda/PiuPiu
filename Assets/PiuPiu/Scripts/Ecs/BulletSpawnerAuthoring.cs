@@ -15,7 +15,7 @@ namespace PiuPiu.Scripts.Ecs
             public override void Bake(BulletSpawnerAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new BulletSpawner
+                AddComponent(entity, new BulletSpawnerData
                 {
                     bulletSpeed = authoring.bulletSpeed,
                     delayToFire = authoring.delayToFire,

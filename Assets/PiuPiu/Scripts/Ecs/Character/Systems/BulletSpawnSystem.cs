@@ -15,19 +15,28 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<InputData>();
-            state.RequireForUpdate<BulletSpawner>();
+            state.RequireForUpdate<BulletSpawnerData>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (bulletSpawner, localTransform, entity) in
-                     SystemAPI.Query<RefRW<BulletSpawner>, RefRO<LocalToWorld>>().WithEntityAccess())
+                     SystemAPI.Query<RefRW<BulletSpawnerData>, RefRO<LocalToWorld>>().WithEntityAccess())
             {
                 bulletSpawner.ValueRW.currentTime -= SystemAPI.Time.DeltaTime;
-
+                
                 if (bulletSpawner.ValueRW.currentTime <= 0)
                 {
+
+                    if (SystemAPI.HasComponent<Parent>(entity))
+                    {
+                        var parent = SystemAPI.GetComponent<Parent>(entity);
+                        var inputData = SystemAPI.GetComponent<InputData>(parent.Value);
+                        if(!inputData.Space)
+                            return;
+                    }
+
                     bulletSpawner.ValueRW.currentTime = bulletSpawner.ValueRO.delayToFire;
 
                     var newEntity = state.EntityManager.Instantiate(bulletSpawner.ValueRO.BulletPrefab);

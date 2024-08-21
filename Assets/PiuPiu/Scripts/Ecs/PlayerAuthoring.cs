@@ -1,17 +1,18 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
+using PiuPiu.Scripts.Ecs.Character.Systems;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace PiuPiu.Scripts.Ecs
 {
-    public class CharacterAuthoring : MonoBehaviour
+    public class PlayerAuthoring : MonoBehaviour
     {
         [SerializeField] private float speedMoving;
         
-        class Baker : Baker<CharacterAuthoring>
+        class Baker : Baker<PlayerAuthoring>
         {
-            public override void Bake(CharacterAuthoring authoring)
+            public override void Bake(PlayerAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new CharacterMovingData
@@ -19,6 +20,10 @@ namespace PiuPiu.Scripts.Ecs
                     MovingDirection = new float3(0,0,0),
                     Speed = authoring.speedMoving,
                 });
+                
+                AddComponent(entity , new PlayerData());
+                AddComponent(entity , new InputData());
+                AddComponent(entity , new PlayerRotateMouseData());
             }
         }
     }

@@ -21,9 +21,8 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             foreach (var movingData in
                      SystemAPI.Query<RefRW<CharacterMovingData>>().WithAny<PlayerData>())
             {
-                // var move = new float3(input.Horizontal, 0, input.Vertical);
-                movingData.ValueRW.Direction =
-                    new float3(input.Horizontal, movingData.ValueRW.Direction.y, input.Vertical);
+                movingData.ValueRW.MovingDirection =
+                    new float3(input.Horizontal, movingData.ValueRW.MovingDirection.y, input.Vertical);
             }
         }
     }
