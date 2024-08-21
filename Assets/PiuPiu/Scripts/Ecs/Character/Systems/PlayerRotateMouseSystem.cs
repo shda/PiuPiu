@@ -20,7 +20,6 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
        // [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             
             EntityQueryBuilder builder = new EntityQueryBuilder(Allocator.Temp).WithAll<PhysicsWorldSingleton>();
@@ -47,7 +46,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             if (haveHit)
             {
                 foreach (var (movingData , entity) in 
-                         SystemAPI.Query<RefRW<CharacterMovingData>>().WithEntityAccess())
+                         SystemAPI.Query<RefRW<CharacterMovingData>>().WithAny<PlayerData>().WithEntityAccess())
                 {
                     movingData.ValueRW.RotatePoint = hit.Position;
                 }

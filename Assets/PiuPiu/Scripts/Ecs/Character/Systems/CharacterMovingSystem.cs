@@ -28,17 +28,10 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
                physicsVelocity.ValueRW.Linear = movingData.ValueRO.MovingDirection * movingData.ValueRO.Speed * deltaTime;
                physicsVelocity.ValueRW.Angular = new float3();
                
-               //physicsVelocity.ValueRW.Linear = new float3();
-               //physicsVelocity.ValueRW.Angular = new float3();
-
                var localTransform = SystemAPI.GetComponentRW<LocalTransform>(entity);
-
-               //var up = localTransform.ValueRW.Up();
 
                var point = movingData.ValueRO.RotatePoint - localTransform.ValueRW.Position;
                var rotate = quaternion.LookRotationSafe(point, math.up());
-               
-               
                
                var euler = math.Euler(rotate);
                var start = math.Euler(localTransform.ValueRW.Rotation);

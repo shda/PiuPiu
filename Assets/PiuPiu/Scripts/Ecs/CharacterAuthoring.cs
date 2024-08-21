@@ -7,6 +7,8 @@ namespace PiuPiu.Scripts.Ecs
 {
     public class CharacterAuthoring : MonoBehaviour
     {
+        [SerializeField] private int maxHealth = 100;
+        [SerializeField] private int currentHealth = 100;
         [SerializeField] private float speedMoving;
         
         class Baker : Baker<CharacterAuthoring>
@@ -18,6 +20,12 @@ namespace PiuPiu.Scripts.Ecs
                 {
                     MovingDirection = new float3(0,0,0),
                     Speed = authoring.speedMoving,
+                });
+                
+                AddComponent(entity , new HealthComponentData
+                {
+                    maxHealth = authoring.maxHealth,
+                    currentHealth = authoring.currentHealth,
                 });
             }
         }

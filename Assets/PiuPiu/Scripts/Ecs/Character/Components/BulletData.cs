@@ -4,6 +4,6 @@ namespace PiuPiu.Scripts.Ecs.Character.Components
 {
     public struct BulletData : IComponentData
     {
-        
+        public int hitDamage;
     }
 }

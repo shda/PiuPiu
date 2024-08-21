@@ -6,12 +6,16 @@ namespace PiuPiu.Scripts.Ecs
 {
     public class BulletAuthoring : MonoBehaviour
     {
+        [SerializeField] private int hitDamage = 100;
         class Baker : Baker<BulletAuthoring>
         {
             public override void Bake(BulletAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new BulletData());
+                AddComponent(entity, new BulletData
+                {
+                    hitDamage = authoring.hitDamage,
+                });
             }
         }
     }
