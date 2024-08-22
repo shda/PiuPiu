@@ -26,17 +26,8 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             {
                 bulletSpawner.ValueRW.currentTime -= SystemAPI.Time.DeltaTime;
                 
-                if (bulletSpawner.ValueRW.currentTime <= 0)
+                if (bulletSpawner.ValueRW.currentTime <= 0 && bulletSpawner.ValueRO.isFireing)
                 {
-
-                    if (SystemAPI.HasComponent<Parent>(entity))
-                    {
-                        var parent = SystemAPI.GetComponent<Parent>(entity);
-                        var inputData = SystemAPI.GetComponent<InputData>(parent.Value);
-                        if(!inputData.Space)
-                            return;
-                    }
-
                     bulletSpawner.ValueRW.currentTime = bulletSpawner.ValueRO.delayToFire;
 
                     var newEntity = state.EntityManager.Instantiate(bulletSpawner.ValueRO.BulletPrefab);

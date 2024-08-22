@@ -1,4 +1,5 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -7,17 +8,16 @@ using UnityEngine;
 using Ray = UnityEngine.Ray;
 using RaycastHit = Unity.Physics.RaycastHit;
 
-namespace PiuPiu.Scripts.Ecs.Character.Systems
+namespace PiuPiu.Scripts.Ecs.Character.Player
 {
     public partial struct PlayerRotateMouseSystem : ISystem
     {
-       // [BurstCompile]
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerRotateMouseData>();
         }
         
-       // [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -51,8 +51,6 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
                     movingData.ValueRW.RotatePoint = hit.Position;
                 }
                 
-                Debug.Log(hit.Position);
-
                 PointDraw.Instance.transform.position = hit.Position;
             }
         }

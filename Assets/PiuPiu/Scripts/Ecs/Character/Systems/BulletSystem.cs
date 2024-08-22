@@ -22,8 +22,14 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             var ecb = new EntityCommandBuffer(Allocator.TempJob);
             
             foreach (var (bulletData, bulletEntity) in
-                     SystemAPI.Query<RefRO<BulletData>>().WithEntityAccess())
+                     SystemAPI.Query<RefRW<BulletData>>().WithEntityAccess())
             {
+                bulletData.ValueRW.liveTime -= SystemAPI.Time.DeltaTime;
+                if (bulletData.ValueRW.liveTime <= 0)
+                {
+                    ecb.AddComponent(bulletEntity , new DestroyComponentData());
+                    continue;
+                }
                 
                 if (entityManager.HasComponent<StatefulTriggerEvent>(bulletEntity))
                 {

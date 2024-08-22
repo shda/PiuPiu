@@ -9,5 +9,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Components
         public Entity BulletPrefab;
         
         public float currentTime;
+        
+        public bool isFireing;
     }
 }

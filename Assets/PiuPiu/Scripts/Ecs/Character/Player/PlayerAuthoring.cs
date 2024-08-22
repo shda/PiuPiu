@@ -1,10 +1,9 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
-using PiuPiu.Scripts.Ecs.Character.Systems;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs
+namespace PiuPiu.Scripts.Ecs.Character.Player
 {
     public class PlayerAuthoring : MonoBehaviour
     {
@@ -24,6 +23,7 @@ namespace PiuPiu.Scripts.Ecs
                 AddComponent(entity , new PlayerData());
                 AddComponent(entity , new InputData());
                 AddComponent(entity , new PlayerRotateMouseData());
+                AddComponent(entity , new PlayerCameraData());
             }
         }
     }

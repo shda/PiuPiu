@@ -1,11 +1,10 @@
 using PiuPiu.Scripts.Ecs.Character.Components;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Mathematics;
 
-namespace PiuPiu.Scripts.Ecs.Character.Systems
+namespace PiuPiu.Scripts.Ecs.Character.Player
 {
-    public partial struct PlayerMovingSystem : ISystem
+    public partial struct PlayerFireSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -17,12 +16,10 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
         public void OnUpdate(ref SystemState state)
         {
             var input = SystemAPI.GetSingleton<InputData>();
-            
-            foreach (var movingData in
-                     SystemAPI.Query<RefRW<CharacterMovingData>>().WithAny<PlayerData>())
+
+            foreach (var bulletSpawner  in SystemAPI.Query<RefRW<BulletSpawnerData>>())
             {
-                movingData.ValueRW.MovingDirection =
-                    new float3(input.Horizontal, movingData.ValueRW.MovingDirection.y, input.Vertical);
+                bulletSpawner.ValueRW.isFireing = input.Space;
             }
         }
     }

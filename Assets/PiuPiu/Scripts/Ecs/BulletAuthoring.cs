@@ -7,6 +7,7 @@ namespace PiuPiu.Scripts.Ecs
     public class BulletAuthoring : MonoBehaviour
     {
         [SerializeField] private int hitDamage = 100;
+        [SerializeField] private float liveTime = 5.0f;
         class Baker : Baker<BulletAuthoring>
         {
             public override void Bake(BulletAuthoring authoring)
@@ -15,6 +16,7 @@ namespace PiuPiu.Scripts.Ecs
                 AddComponent(entity, new BulletData
                 {
                     hitDamage = authoring.hitDamage,
+                    liveTime = authoring.liveTime,
                 });
             }
         }
