@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.latios.latiosframework": "https://github.com/Dreaming381/Latios-Framework.git",
+    "com.unity.burst": "1.8.17",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.entities": "1.2.4",
     "com.unity.entities.graphics": "1.2.4",

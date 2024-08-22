@@ -26,7 +26,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             isAlreadySpawning = true;
             
             var prefab = SystemAPI.GetSingleton<Spawner>().Prefab;
-            var instances = state.EntityManager.Instantiate(prefab, 1000, Allocator.Temp);
+            var instances = state.EntityManager.Instantiate(prefab, 50, Allocator.Temp);
             
             var random = Random.CreateFromIndex(111);
             
@@ -34,7 +34,7 @@ namespace PiuPiu.Scripts.Ecs.Character.Systems
             {
                 // Update the entity's LocalTransform component with the new position.
                 var transform = SystemAPI.GetComponentRW<LocalTransform>(entity);
-                var randomFloat3 = (random.NextFloat3() - new float3(0.5f, 0, 0.5f)) * 20;
+                var randomFloat3 = (random.NextFloat3() - new float3(0.5f, 0, 0.5f)) * 5;
                 transform.ValueRW.Position = new float3(randomFloat3.x , 0 , randomFloat3.z);
             }
         }

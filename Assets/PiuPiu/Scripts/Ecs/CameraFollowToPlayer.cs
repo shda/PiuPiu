@@ -25,7 +25,7 @@ namespace PiuPiu.Scripts.Ecs
                 _CameraProxyQuery.Dispose();
         }
         
-        private void Update()
+        private void LateUpdate()
         {
             if (World.DefaultGameObjectInjectionWorld?.IsCreated == true &&
                 World.DefaultGameObjectInjectionWorld.EntityManager.IsQueryValid(_CameraProxyQuery) &&
