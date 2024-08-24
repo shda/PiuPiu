@@ -10,6 +10,22 @@ namespace PiuPiu.Scripts.Ecs.Player
         
         EntityQuery _CameraProxyQuery;
         
+        private void LateUpdate()
+        {
+            if (World.DefaultGameObjectInjectionWorld?.IsCreated == true &&
+                World.DefaultGameObjectInjectionWorld.EntityManager.IsQueryValid(_CameraProxyQuery) &&
+                !_CameraProxyQuery.IsEmpty)
+            {
+                var cameraEntity = _CameraProxyQuery.GetSingletonEntity();
+                
+                var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+                entityManager.AddComponentData(cameraEntity , new TransformCameraData()
+                {
+                    Transform = mainCamera.transform,
+                });
+            }
+        }
+        
         void Start()
         {
             _CameraProxyQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(
@@ -22,22 +38,6 @@ namespace PiuPiu.Scripts.Ecs.Player
             if (World.DefaultGameObjectInjectionWorld?.IsCreated == true &&
                 World.DefaultGameObjectInjectionWorld.EntityManager.IsQueryValid(_CameraProxyQuery))
                 _CameraProxyQuery.Dispose();
-        }
-        
-        private void LateUpdate()
-        {
-            if (World.DefaultGameObjectInjectionWorld?.IsCreated == true &&
-                World.DefaultGameObjectInjectionWorld.EntityManager.IsQueryValid(_CameraProxyQuery) &&
-                !_CameraProxyQuery.IsEmpty)
-            {
-                var cameraEntity = _CameraProxyQuery.GetSingletonEntity();
-                
-                var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-                entityManager.AddComponentData(cameraEntity , new TransformCameraData()
-                {
-                   Transform = mainCamera.transform,
-                });
-            }
         }
     }
 }

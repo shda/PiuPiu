@@ -16,7 +16,6 @@ namespace PiuPiu.Scripts.Ecs.Player
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            //InputData должен быть в оденочном экземпляре и только у одного Entity
             var input = SystemAPI.GetSingleton<InputData>();
 
             foreach (var bulletSpawner  in SystemAPI.Query<RefRW<BulletSpawnerData>>())

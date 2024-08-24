@@ -27,7 +27,7 @@ namespace PiuPiu.Scripts.Ecs.Bullet
                 bulletData.ValueRW.liveTime -= SystemAPI.Time.DeltaTime;
                 if (bulletData.ValueRW.liveTime <= 0)
                 {
-                    ecb.AddComponent(bulletEntity , new DestroyComponentData());
+                    ecb.AddComponent(bulletEntity , new DestroyTag());
                     continue;
                 }
                 
@@ -44,18 +44,19 @@ namespace PiuPiu.Scripts.Ecs.Bullet
                             hitEntity = item.EntityB;
                         }
 
-                        if (SystemAPI.HasComponent<HealthComponentData>(hitEntity))
+                        if (SystemAPI.HasComponent<HealthData>(hitEntity))
                         {
-                            var health = SystemAPI.GetComponentRW<HealthComponentData>(hitEntity);
-                            health.ValueRW.currentHealth -= bulletData.ValueRO.hitDamage;
+                            var health = SystemAPI.GetComponentRW<HealthData>(hitEntity);
+                            health.ValueRW.health -= bulletData.ValueRO.hitDamage;
                             
-                            if (health.ValueRW.currentHealth <= 0)
+                            if (health.ValueRW.health <= 0)
                             {
-                                ecb.AddComponent(hitEntity, new DestroyComponentData());
+                                ecb.AddComponent(hitEntity, new DestroyTag());
                             }
                             
                             //Destroy bullet
-                            ecb.AddComponent(bulletEntity , new DestroyComponentData());
+                            ecb.AddComponent(bulletEntity , new DestroyTag());
+                            break;
                         }
                     }
                 }

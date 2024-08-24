@@ -12,7 +12,7 @@ namespace PiuPiu.Scripts.Ecs.Character
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerData>();
-            state.RequireForUpdate<CharacterMovingData>();
+            state.RequireForUpdate<MovingData>();
         }
 
         [BurstCompile]
@@ -22,11 +22,11 @@ namespace PiuPiu.Scripts.Ecs.Character
             var localWorld = SystemAPI.GetComponentRO<LocalToWorld>(player);
             
             foreach (var (movingData, enemyLocalToWorld) in
-                     SystemAPI.Query<RefRW<CharacterMovingData>, RefRW<LocalToWorld>>().WithNone<PlayerData>())
+                     SystemAPI.Query<RefRW<MovingData>, RefRW<LocalToWorld>>().WithNone<PlayerData>())
             {
                 if (math.distance(movingData.ValueRW.MovingDirection, localWorld.ValueRO.Position) > 1)
                 {
-                    movingData.ValueRW.RotatePoint = localWorld.ValueRO.Position;
+                    movingData.ValueRW.RotateToDirection = localWorld.ValueRO.Position;
 
                     var direction =
                         math.normalizesafe(localWorld.ValueRO.Position - enemyLocalToWorld.ValueRO.Position);

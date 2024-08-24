@@ -46,9 +46,9 @@ namespace PiuPiu.Scripts.Ecs.Player
             if (haveHit)
             {
                 foreach (var (movingData , entity) in 
-                         SystemAPI.Query<RefRW<CharacterMovingData>>().WithAny<PlayerData>().WithEntityAccess())
+                         SystemAPI.Query<RefRW<MovingData>>().WithAny<PlayerData>().WithEntityAccess())
                 {
-                    movingData.ValueRW.RotatePoint = hit.Position;
+                    movingData.ValueRW.RotateToDirection = hit.Position;
                 }
                 
                 PointDraw.Instance.transform.position = hit.Position;

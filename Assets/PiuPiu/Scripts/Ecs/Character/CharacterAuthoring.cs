@@ -6,6 +6,8 @@ namespace PiuPiu.Scripts.Ecs.Character
 {
     public class CharacterAuthoring : MonoBehaviour
     {
+        [SerializeField] private GameObject SpawnAfterDestroyPrefab;
+        
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private int currentHealth = 100;
         [SerializeField] private float speedMoving;
@@ -15,16 +17,21 @@ namespace PiuPiu.Scripts.Ecs.Character
             public override void Bake(CharacterAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new CharacterMovingData
+                AddComponent(entity, new MovingData
                 {
                     MovingDirection = new float3(0,0,0),
                     Speed = authoring.speedMoving,
                 });
                 
-                AddComponent(entity , new HealthComponentData
+                AddComponent(entity , new HealthData
                 {
                     maxHealth = authoring.maxHealth,
-                    currentHealth = authoring.currentHealth,
+                    health = authoring.currentHealth,
+                });
+                
+                AddComponent(entity , new SpawnEntityBeforeDestroyData()
+                {
+                    Prefab = GetEntity(authoring.SpawnAfterDestroyPrefab , TransformUsageFlags.Dynamic),
                 });
             }
         }

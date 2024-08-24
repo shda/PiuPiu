@@ -20,7 +20,7 @@ namespace PiuPiu.Scripts.Ecs.Player
             var input = SystemAPI.GetSingleton<InputData>();
             
             foreach (var movingData in
-                     SystemAPI.Query<RefRW<CharacterMovingData>>().WithAny<PlayerData>())
+                     SystemAPI.Query<RefRW<MovingData>>().WithAny<PlayerData>())
             {
                 movingData.ValueRW.MovingDirection =
                     new float3(input.Horizontal, movingData.ValueRW.MovingDirection.y, input.Vertical);

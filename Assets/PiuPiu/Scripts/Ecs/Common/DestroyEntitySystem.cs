@@ -1,5 +1,4 @@
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 
 namespace PiuPiu.Scripts.Ecs.Character
@@ -9,22 +8,20 @@ namespace PiuPiu.Scripts.Ecs.Character
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<DestroyComponentData>();
+            state.RequireForUpdate<DestroyTag>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (destroyComponentData, entity) in
-                     SystemAPI.Query<RefRO<DestroyComponentData>>().WithEntityAccess())
+                     SystemAPI.Query<RefRO<DestroyTag>>().WithEntityAccess())
             {
                 ecb.DestroyEntity(entity);
             }
-            
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
         }
     }
 }
