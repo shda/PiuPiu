@@ -4,6 +4,6 @@ namespace PiuPiu.Scripts.Ecs.Player
 {
     public struct PlayerData : IComponentData
     {
-        
+        public int countCoin;
     }
 }

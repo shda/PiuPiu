@@ -1,4 +1,5 @@
 using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Player;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -24,6 +25,9 @@ namespace PiuPiu.Scripts.Ecs.Bullet
             foreach (var (bulletData, bulletEntity) in
                      SystemAPI.Query<RefRW<BulletData>>().WithEntityAccess())
             {
+                if(SystemAPI.HasComponent<DestroyTag>(bulletEntity))
+                    continue;
+                
                 bulletData.ValueRW.liveTime -= SystemAPI.Time.DeltaTime;
                 if (bulletData.ValueRW.liveTime <= 0)
                 {
@@ -42,6 +46,12 @@ namespace PiuPiu.Scripts.Ecs.Bullet
                         if (hitEntity == bulletEntity)
                         {
                             hitEntity = item.EntityB;
+                        }
+
+                        //Todo
+                        if (SystemAPI.HasComponent<PlayerData>(hitEntity))
+                        {
+                            continue;
                         }
 
                         if (SystemAPI.HasComponent<HealthData>(hitEntity))

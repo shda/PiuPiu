@@ -34,6 +34,7 @@ namespace PiuPiu.Scripts.Ecs.Player
                 AddComponent(entity , new PlayerRotateMouseData());
                 AddComponent(entity , new PlayerCameraData());
                 AddComponent(entity , new IsCanEatThingsTag());
+                AddComponent(entity , new CoinCountData());
             }
         }
     }

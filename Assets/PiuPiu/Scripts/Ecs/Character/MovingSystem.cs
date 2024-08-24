@@ -19,7 +19,7 @@ namespace PiuPiu.Scripts.Ecs.Character
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            float deltaTime = SystemAPI.Time.DeltaTime;
+           // float deltaTime = SystemAPI.Time.DeltaTime;
 
             foreach (var (physicsVelocity,
                          movingData,
@@ -29,7 +29,7 @@ namespace PiuPiu.Scripts.Ecs.Character
                          .WithEntityAccess())
             {
                 physicsVelocity.ValueRW.Linear =
-                    movingData.ValueRO.MovingDirection * movingData.ValueRO.Speed * deltaTime;
+                    movingData.ValueRO.MovingDirection * movingData.ValueRO.Speed;// * deltaTime;
                 physicsVelocity.ValueRW.Angular = new float3();
 
                 var point = movingData.ValueRO.RotateToDirection - localTransform.ValueRW.Position;

@@ -6,7 +6,7 @@ namespace PiuPiu.Scripts.Ecs.Character
 {
     public class CharacterAuthoring : MonoBehaviour
     {
-        [SerializeField] private GameObject SpawnAfterDestroyPrefab;
+        [SerializeField] private GameObject[] spawnAfterDestroyPrefabs;
         
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private int currentHealth = 100;
@@ -29,10 +29,19 @@ namespace PiuPiu.Scripts.Ecs.Character
                     health = authoring.currentHealth,
                 });
                 
-                AddComponent(entity , new SpawnEntityBeforeDestroyData()
+                AddComponent(entity , new SpawnEntityBeforeDestroyData());
+                
+                var buffer = AddBuffer<SpawnPrefab>(entity);
+                foreach (var prefab in authoring.spawnAfterDestroyPrefabs)
                 {
-                    Prefab = GetEntity(authoring.SpawnAfterDestroyPrefab , TransformUsageFlags.Dynamic),
-                });
+                    if (prefab != null)
+                    {
+                        buffer.Add(new SpawnPrefab
+                        {
+                            Prefab = GetEntity(prefab, TransformUsageFlags.Dynamic)
+                        });
+                    }
+                }
             }
         }
     }
