@@ -1,4 +1,4 @@
 # PiuPiu
 First game to Unity ECS
 
-![alt text](Img/Screenshot.png)
+![alt text](Img/Screenshot.jpg)
