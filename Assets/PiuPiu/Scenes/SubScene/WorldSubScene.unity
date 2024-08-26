@@ -8451,7 +8451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6539039164345779548, guid: be4802717dd50124f9dcba15cb4a3f17, type: 3}
       propertyPath: bulletSpeed
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6539039164345779548, guid: be4802717dd50124f9dcba15cb4a3f17, type: 3}
       propertyPath: delayToFire
