@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Coin;
 using PiuPiu.Scripts.Ecs.Player;
 using TMPro;
 using Unity.Collections;

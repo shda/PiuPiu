@@ -1,12 +1,10 @@
-using PiuPiu.Scripts.Ecs.Player;
-using PiuPiu.Scripts.Ecs.Things;
+using PiuPiu.Scripts.Ecs.Common;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics.Stateful;
-using Unity.Transforms;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Coin
 {
     [BurstCompile]
     public partial struct CoinUpSystem : ISystem

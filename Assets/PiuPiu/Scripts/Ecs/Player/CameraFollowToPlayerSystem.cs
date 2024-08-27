@@ -4,6 +4,7 @@ using Unity.Transforms;
 
 namespace PiuPiu.Scripts.Ecs.Player
 {
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct CameraFollowToPlayerSystem : ISystem
     {
         [BurstCompile]

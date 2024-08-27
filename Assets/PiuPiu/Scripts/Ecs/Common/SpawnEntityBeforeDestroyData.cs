@@ -1,15 +1,17 @@
+using PiuPiu.Scripts.Ecs.Character;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public struct SpawnEntityBeforeDestroyData : IComponentData
     {
         public bool isAlreadySpawn;
     }
     
+    [UpdateBefore(typeof(TransformSystemGroup))]
     [UpdateBefore(typeof(DestroyEntitySystem))]
     public partial struct SpawnEntityBeforeDestroySystem : ISystem
     {

@@ -1,8 +1,11 @@
+using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Player;
 using Unity.Burst;
 using Unity.Entities;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
+    [UpdateBefore(typeof(PlayerMovingSystem))]
     public partial struct DestroyEntitySystem : ISystem
     {
         [BurstCompile]

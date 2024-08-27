@@ -1,7 +1,9 @@
 using PiuPiu.Scripts.Ecs.Character;
-using PiuPiu.Scripts.Ecs.Things;
+using PiuPiu.Scripts.Ecs.Coin;
+using PiuPiu.Scripts.Ecs.EatThings;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace PiuPiu.Scripts.Ecs.Player

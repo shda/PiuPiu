@@ -1,3 +1,4 @@
+using PiuPiu.Scripts.Ecs.Common;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;

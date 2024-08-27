@@ -1,9 +1,11 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Player
 {
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct InputSystem : ISystem
     {
         [BurstCompile]

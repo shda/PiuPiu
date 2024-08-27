@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.WaveAttack
 {
     public class SpawnPointAuthoring  : MonoBehaviour
     {

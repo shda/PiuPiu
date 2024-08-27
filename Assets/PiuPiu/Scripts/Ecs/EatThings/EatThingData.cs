@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace PiuPiu.Scripts.Ecs.Things
+namespace PiuPiu.Scripts.Ecs.EatThings
 {
     public struct EatThingData : IComponentData
     {

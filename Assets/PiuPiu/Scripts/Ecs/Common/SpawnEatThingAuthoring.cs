@@ -1,7 +1,9 @@
+using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.EatThings;
 using Unity.Entities;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public class SpawnEatThingAuthoring  : MonoBehaviour
     {

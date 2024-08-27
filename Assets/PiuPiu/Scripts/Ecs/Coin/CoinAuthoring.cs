@@ -1,8 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Coin
 {
     public class CoinAuthoring : MonoBehaviour
     {

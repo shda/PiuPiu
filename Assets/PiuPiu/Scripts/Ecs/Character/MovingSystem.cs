@@ -7,7 +7,7 @@ using Unity.Transforms;
 
 namespace PiuPiu.Scripts.Ecs.Character
 {
-    [UpdateAfter(typeof(PhysicsInitializeGroup)), UpdateBefore(typeof(ExportPhysicsWorld))]
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct MovingSystem : ISystem
     {
         [BurstCompile]

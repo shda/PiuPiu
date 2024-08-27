@@ -1,12 +1,12 @@
 using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Common;
 using PiuPiu.Scripts.Ecs.Player;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics.Stateful;
-using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Things
+namespace PiuPiu.Scripts.Ecs.EatThings
 {
     public partial struct EatThingSystem : ISystem
     {

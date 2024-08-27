@@ -1,9 +1,8 @@
 using System;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public struct SpawnRandomPrefabsData : IComponentData
     {

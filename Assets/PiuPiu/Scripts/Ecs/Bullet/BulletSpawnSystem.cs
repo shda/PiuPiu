@@ -1,4 +1,5 @@
 using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Player;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;

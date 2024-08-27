@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Things
+namespace PiuPiu.Scripts.Ecs.EatThings
 {
     public class EatThingAuthoring  : MonoBehaviour
     {

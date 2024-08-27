@@ -1,8 +1,9 @@
+using PiuPiu.Scripts.Ecs.Character;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public partial struct RotateSystem : ISystem
     {

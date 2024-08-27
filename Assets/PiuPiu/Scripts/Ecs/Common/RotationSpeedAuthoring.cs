@@ -1,8 +1,9 @@
+using PiuPiu.Scripts.Ecs.Character;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public class RotationSpeedAuthoring : MonoBehaviour
     {

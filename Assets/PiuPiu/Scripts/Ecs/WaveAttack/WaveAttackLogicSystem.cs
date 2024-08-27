@@ -1,11 +1,12 @@
-using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Common;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace PiuPiu.Scripts.Ecs.Common
+namespace PiuPiu.Scripts.Ecs.WaveAttack
 {
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct WaveAttackLogicSystem : ISystem
     {
         private Random random;

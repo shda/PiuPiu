@@ -1,4 +1,5 @@
 using PiuPiu.Scripts.Ecs.Character;
+using PiuPiu.Scripts.Ecs.Common;
 using PiuPiu.Scripts.Ecs.Player;
 using Unity.Burst;
 using Unity.Collections;
@@ -7,6 +8,7 @@ using Unity.Physics.Stateful;
 
 namespace PiuPiu.Scripts.Ecs.Bullet
 {
+    [UpdateAfter(typeof(DestroyEntitySystem))]
     public partial struct BulletSystem : ISystem
     {
         [BurstCompile]

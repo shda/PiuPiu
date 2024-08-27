@@ -1,7 +1,8 @@
+using PiuPiu.Scripts.Ecs.Common;
 using Unity.Entities;
 using UnityEngine;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.WaveAttack
 {
     public class WaveAttackLogicAuthoring : MonoBehaviour
     {

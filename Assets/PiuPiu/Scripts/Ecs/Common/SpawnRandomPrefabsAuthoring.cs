@@ -1,10 +1,9 @@
-using Unity.Collections;
+using PiuPiu.Scripts.Ecs.Character;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Pool;
 
-namespace PiuPiu.Scripts.Ecs.Character
+namespace PiuPiu.Scripts.Ecs.Common
 {
     public class SpawnRandomPrefabsAuthoring : MonoBehaviour
     {
